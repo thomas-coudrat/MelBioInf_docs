@@ -911,8 +911,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../molecular_dynamics_201/molecular_dynamics_201/" title="Molecular Dynamics - Building input files" class="md-nav__link">
-      Molecular Dynamics - Building input files
+    <a href="../../molecular_dynamics_201/molecular_dynamics_201/" title="Molecular Dynamics - Building input files, visualising the trajectory" class="md-nav__link">
+      Molecular Dynamics - Building input files, visualising the trajectory
     </a>
   </li>
 
@@ -1071,6 +1071,11 @@
 </li>
 </ul>
 <p>As we will be working from a terminal on the cluster and later downloading data back to our local desktop for visualization and analysis, we will be assuming that the users have basic knowledge of Unix/Linux. If you are unfamiliar with these, we suggest you first work through this <a href="https://melbournebioinformatics.github.io/MelBioInf_docs/tutorials/unix/robinson-unix-link/">Unix tutorial</a>.</p>
+<p><strong>Important</strong>: NAMD has specific licencing requirements. Users are required to agree to these requirements to use NAMD on the Melbourne Bioinformatics HPC clusters. Login on <a href="https://my.vlsci.org.au/">https://my.vlsci.org.au/</a>, select 'Software agreement', 'Add software', 'NAMD'.</p>
+<blockquote>
+<p><strong>Note</strong>: this tutorial describes the use of Snowy, but all these steps can be carried out on Barcoo by substituting every instance of <code>snowy</code> for <code>barcoo</code>.</p>
+</blockquote>
+<p><em>Tutorials created by Mike Kuiper, edited by Thomas Coudrat.</em></p>
 <hr />
 <h2 id="1-overview">1 - Overview</h2>
 <p>The aim of this tutorial is to give the user experience to upload and submit a typical parallel job to the cluster, download the output, and visualize the preliminary results. Though this example is mostly relevant to those studying in the life sciences area, the workflow is representative of launching other parallel jobs.</p>
@@ -1086,10 +1091,10 @@ If you type <code>ls</code> at the prompt you should see a list of the files and
 <blockquote>
 <p><strong>Note</strong>: be careful to use the right <strong>terminal</strong> when you are typing in commands!
 Sometimes you need to type the commands on the cluster terminal, and sometimes on your local terminal. You can tell which is which by looking at the command line prompt. When you are logged into the cluster, you should see the machine name at the prompt, for example:</p>
-<p><code>[&lt;username&gt;@snowy ~]$</code>               &lt;- tells you your terminal is on snowy</p>
+<p><code>[&lt;username&gt;@snowy ~]$</code>               &lt;- tells you your terminal is on Snowy</p>
 </blockquote>
 <h3 id="b-copy-across-files-starting-the-job">b) Copy across files, starting the job</h3>
-<p>We’ll need to copy across the basic example directory to our working directory on <strong>snowy</strong>. Do this with:</p>
+<p>We’ll need to copy across the basic example directory to our working directory on <strong>Snowy</strong>. Do this with:</p>
 <pre><code>cp -r /vlsci/examples/namd/Namd_simple_example_01 .
 </code></pre>
 
@@ -1218,12 +1223,12 @@ drwxr-xr-x 2 mike VR0021      512 Dec  8 11:40 BUILD_DIR
 <p>You have just run a short molecular dynamics simulation on the cluster. Next, we'll copy that information back to your local computer and use VMD to visualize the results.</p>
 <p>Now on to part 2, visualizing the results with VMD.</p>
 <h2 id="3-visualizing-namd-results-with-vmd">3 - Visualizing NAMD results with VMD</h2>
-<p>Welcome to part 2 of the NAMD tutorial, where you will be using the <a href="http://www.ks.uiuc.edu/Research/vmd/">molecular visualization program VMD</a> to look at the trajectory data of the ubiquitin protein you generated in part 1 of the tutorial. If you haven't already done so, download and install VMD to your local computer (make sure to pick the right flavour: Windows, Mac or Linux).</p>
+<p>In this section you will be using the <a href="http://www.ks.uiuc.edu/Research/vmd/">molecular visualization program VMD</a> to look at the trajectory data of the ubiquitin protein you generated in the first part of the tutorial. If you haven't already done so, download and install VMD to your local computer (make sure to pick the right flavour: Windows, Mac or Linux).</p>
 <blockquote>
-<p><strong>Tip</strong>: the most confusing part of this exercise seems to be remembering to use the right terminal! That is, either one is connected to the cluster, or one is running on your local computer. The exercises we just ran were on the cluster. That is, a terminal which we used to connect to the <strong>snowy</strong> cluster using the program <strong>ssh</strong>.</p>
+<p><strong>Tip</strong>: the most confusing part of this exercise seems to be remembering to use the right terminal! That is, either one is connected to the cluster, or one is running on your local computer. The exercises we just ran were on the cluster. That is, a terminal which we used to connect to the <strong>Snowy</strong> cluster using the program <strong>ssh</strong>.</p>
 <p>You can usually tell which computer you are logged into by the terminal command line: for example the terminal command line:</p>
 <p><code>[mike@snowy Namd_simple_example_01]$</code></p>
-<p>tells me I am logged into <strong>snowy</strong>, in the <code>Namd_simple_example_01</code> directory.</p>
+<p>tells me I am logged into <strong>Snowy</strong>, in the <code>Namd_simple_example_01</code> directory.</p>
 <p>Compared to my local terminal command line:</p>
 <p><code>mike@axion:~$</code></p>
 <p>tells me I am on my local machine (called "axion" in this case).</p>
@@ -1235,7 +1240,7 @@ For example, in Linux you can type in your <strong>local computer</strong> termi
 
 <p>What to do if your simulations didn’t run.</p>
 <p>If for some reason your simulations didn’t run properly you can download a copy of the precomputed data to your local computer by using the following command command from a local terminal:</p>
-<pre><code>scp -r &lt;username&gt;@snowy.vlsci.unimelb.edu.au:vlsci/examples/namd/Namd_simple_example_01_finished .  
+<pre><code>scp -r &lt;username&gt;@snowy.vlsci.unimelb.edu.au:/vlsci/examples/namd/Namd_simple_example_01_finished .  
 </code></pre>
 
 <p>You can now start VMD <strong>locally</strong> and load up the trajectory data. In a new local terminal type:</p>
@@ -1260,19 +1265,18 @@ For example, in Linux you can type in your <strong>local computer</strong> termi
 <p>File → New molecule → (browse: 1ubq_example.psf) → load</p>
 </blockquote>
 <p>You should see nothing in the display, but an entry in the Main panel.
-Next load the coordinates from the <strong>.pdb</strong> file:</p>
+Next load the coordinates from the <strong>.pdb</strong> file. First, select the 1ubq_example.psf entry in the VMD main panel, then:</p>
 <blockquote>
 <p>File → Load data onto molecule → (browse: 1ubq_example.pdb) → load</p>
 </blockquote>
 <p>Now you should have the model in the display that can be moved around with the mouse.
-This is the initial starting position of the simulation. Next load in the trajectory data into VMD:</p>
+This is the initial starting position of the simulation. Next load in the trajectory data into VMD (again, select the entry in the VMD main panel):</p>
 <blockquote>
 <p>File → Load data onto molecule → (browse:1ubq_output.dcd) → load</p>
 </blockquote>
 <p>This data represents the “molecular movie” or trajectory of how the atoms in the model moved around during the course of the NAMD simulation. You can play the trajectory by clicking the bottom right arrow of the <em>main panel</em>. (Use the speed scroll bar to the left of that button to slow it down).</p>
 <p>What you are seeing represents the molecular motion of the protein on an extremely small time scale. The NAMD program calculates how the molecule moves over time given certain parameters such as temperature. These models and simulations can give insight into how proteins behave and their role in biological function and certain diseases.</p>
-<p>From the <em>main panel</em> you can bring up the Representations dialogue
-to play with more rendering types: - try them out!</p>
+<p>From the <em>main panel</em> you can bring up the graphical representations window to play with more rendering types: - try them out!</p>
 <blockquote>
 <p>Graphics → Representations</p>
 </blockquote>
@@ -1313,13 +1317,13 @@ Wasn’t so scary now was it?</p>
           </a>
         
         
-          <a href="../../molecular_dynamics_201/molecular_dynamics_201/" title="Molecular Dynamics - Building input files" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../../molecular_dynamics_201/molecular_dynamics_201/" title="Molecular Dynamics - Building input files, visualising the trajectory" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Molecular Dynamics - Building input files
+                Molecular Dynamics - Building input files, visualising the trajectory
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
